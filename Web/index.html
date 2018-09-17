@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Вычисление квадратного корня</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <link rel="shortcut icon" href="if_square_root_1772628.ico">
+    <style>
+        @media all and (min-width: 480px) {
+            .yt-listbox {
+                bottom: auto !important;
+                right: -130% !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+        <h1>Вычисление квадратного корня</h1>
+        <p>Введите число:</p>
+        <input type="text" id="a" onkeypress="if (event.keyCode == 13)
+                        document.getElementById('button').click()">
+        <p>Точность (знаков после запятой): </p>
+        <input type="number" min="0" max="40" value="2" id="b" onkeypress="if (event.keyCode == 13)
+                        document.getElementById('button').click()" onkeydown="javascript: return ((event.keyCode>47)&&(event.keyCode<58)||(event.keyCode==8)||(event.keyCode==46)||(event.keyCode>95)&&(event.keyCode<106)||(event.keyCode==37)||(event.keyCode==39)||(event.keyCode==13))">
+        <input type="button" value="Вычислить" id="button">
+        <p class="answer" id="c"></p>
+        <p class="error" id="d"></p>
+        <div id="ytWidget"></div>
+        <script src="https://translate.yandex.net/website-widget/v1/widget.js?widgetId=ytWidget&pageLang=ru&widgetTheme=light&autoMode=false" type="text/javascript"></script>
+        <p>Служба поддержки: <a href="tel:88002002316">8 (800) 200-23-16</a> </p>
+        <p class="copy">&copy; 2018</p>
+    </div>
+
+    <script src="math.js" type="text/javascript"></script>
+    <script>
+        var chil;
+        var round;
+        var answer;
+        var error;
+        var serch;
+
+
+
+        function someFunc() {
+            chil = document.getElementById("a").value;
+
+            round = document.getElementById("b").value;
+
+            answer = document.getElementsByClassName('answer');
+
+            error = document.getElementsByClassName('error');
+            chil = chil.replace(/[,]/g, '.');
+
+
+
+            answer[0].style.display = "none";
+
+            error[0].style.display = "none";
+
+            if (chil.trim() === '') {
+                document.getElementById('d').innerHTML = '<span>Ошибка!</span>Введите число!';
+                error[0].style.display = "block";
+            } else {
+                if (+round > 40) {
+                    document.getElementById('d').innerHTML = '<span>Ошибка!</span>Вывести возможно максимум 40 знаков после запятой!';
+                    error[0].style.display = "block";
+                } else if (Number.isInteger(+round) == false || +round < 0) {
+                    document.getElementById('d').innerHTML = '<span>Ошибка!</span>Введите положительное целое число для округления!';
+                    error[0].style.display = "block";
+                } else {
+
+                    if (isNaN(chil) == false) {
+                        if (+chil > 0) {
+                            if (Number.isInteger(Math.sqrt(+chil))) {
+                                document.getElementById('c').innerHTML = '<span>Ответ:</span>' + '&plusmn;' + Math.sqrt(+chil);
+                            } else {
+                                document.getElementById('c').innerHTML = '<span>Ответ:</span>' + '&plusmn;' + Math.sqrt(+chil).toFixed(round);
+                            }
+                            answer[0].style.display = "block";
+                        } else if (+chil < 0) {
+                            chil = math.complex(chil);
+                            document.getElementById('c').innerHTML = '<span>Ответ:</span>' + '&plusmn;' + (Number.isInteger(math.sqrt(chil).im) ? (math.sqrt(chil).im == 1 ? 'i' : math.sqrt(chil).im + 'i') : math.sqrt(chil).im.toFixed(round) + 'i');
+                            answer[0].style.display = "block";
+                        } else if (+chil === 0) {
+                            document.getElementById('c').innerHTML = '<span>Ответ:</span>' + Math.sqrt(+chil);
+                            answer[0].style.display = "block";
+                        }
+                    } else {
+                        try {
+
+                            if (chil.search(/sin/i) != -1 || chil.search(/cos/i) != -1 || chil.search(/tg/i) != -1) {
+                                if (chil.search(/Pi/i) != -1) {
+                                    chil = chil.replace(/ /g, '');
+                                    var e = /Pi/gi;
+                                    var array;
+                                    serch = [];
+                                    var sec = 0;
+                                    while ((array = e.exec(chil)) !== null) {
+                                        serch[sec] = array.index;
+                                        sec++;
+                                    }
+                                    sec = 0;
+                                    while (serch.length > sec) {
+                                        if (chil.charCodeAt(serch[sec] - 1) >= 48 && chil.charCodeAt(serch[sec] - 1) <= 57) {
+                                            chil = chil.slice(0, serch[sec]) + '*Math.PI' + chil.slice(serch[sec] + 2, chil.length);
+                                            for (var ind in serch) {
+                                                serch[ind] = serch[ind] + 6;
+                                            }
+
+                                        } else {
+                                            chil = chil.slice(0, serch[sec]) + 'Math.PI' + chil.slice(serch[sec] + 2, chil.length);
+                                            for (var ind in serch) {
+                                                serch[ind] = serch[ind] + 5;
+                                            }
+
+                                        }
+                                        sec++;
+                                    }
+                                }
+                                if (chil.search(/sin/i) != -1) {
+                                    chil = chil.replace(/ /g, '');
+                                    var e = /sin/gi;
+                                    var array;
+                                    serch = [];
+                                    var sec = 0;
+                                    while ((array = e.exec(chil)) !== null) {
+                                        serch[sec] = array.index;
+                                        sec++;
+                                    }
+                                    sec = 0;
+                                    while (serch.length > sec) {
+                                        if (chil.charCodeAt(serch[sec] - 1) >= 48 && chil.charCodeAt(serch[sec] - 1) <= 57) {
+                                            chil = chil.slice(0, serch[sec]) + '*Math.sin' + chil.slice(serch[sec] + 3, chil.length);
+                                            for (var ind in serch) {
+                                                serch[ind] = serch[ind] + 6;
+                                            }
+
+                                        } else {
+                                            chil = chil.slice(0, serch[sec]) + 'Math.sin' + chil.slice(serch[sec] + 3, chil.length);
+                                            for (var ind in serch) {
+                                                serch[ind] = serch[ind] + 5;
+                                            }
+
+                                        }
+                                        sec++;
+                                    }
+                                }
+                                if (chil.search(/cos/i) != -1) {
+                                    chil = chil.replace(/ /g, '');
+                                    var e = /cos/gi;
+                                    var array;
+                                    serch = [];
+                                    var sec = 0;
+                                    while ((array = e.exec(chil)) !== null) {
+                                        serch[sec] = array.index;
+                                        sec++;
+                                    }
+                                    sec = 0;
+                                    while (serch.length > sec) {
+                                        if (chil.charCodeAt(serch[sec] - 1) >= 48 && chil.charCodeAt(serch[sec] - 1) <= 57) {
+                                            chil = chil.slice(0, serch[sec]) + '*Math.cos' + chil.slice(serch[sec] + 3, chil.length);
+                                            for (var ind in serch) {
+                                                serch[ind] = serch[ind] + 6;
+                                            }
+
+                                        } else {
+                                            chil = chil.slice(0, serch[sec]) + 'Math.cos' + chil.slice(serch[sec] + 3, chil.length);
+                                            for (var ind in serch) {
+                                                serch[ind] = serch[ind] + 5;
+                                            }
+
+                                        }
+                                        sec++;
+                                    }
+                                }
+                                if (chil.search(/tg/i) != -1) {
+                                    chil = chil.replace(/ /g, '');
+                                    var e = /tg/gi;
+                                    var array;
+                                    serch = [];
+                                    var sec = 0;
+                                    while ((array = e.exec(chil)) !== null) {
+                                        serch[sec] = array.index;
+                                        sec++;
+                                    }
+                                    sec = 0;
+                                    while (serch.length > sec) {
+                                        if (chil.charCodeAt(serch[sec] - 1) >= 48 && chil.charCodeAt(serch[sec] - 1) <= 57) {
+                                            chil = chil.slice(0, serch[sec]) + '*Math.tan' + chil.slice(serch[sec] + 2, chil.length);
+                                            for (var ind in serch) {
+                                                serch[ind] = serch[ind] + 7;
+                                            }
+
+                                        } else {
+                                            chil = chil.slice(0, serch[sec]) + 'Math.tan' + chil.slice(serch[sec] + 2, chil.length);
+                                            for (var ind in serch) {
+                                                serch[ind] = serch[ind] + 6;
+                                            }
+
+                                        }
+                                        sec++;
+                                    }
+                                }
+
+                                chil = eval(chil);
+                                if (!Number.isNaN(chil)) {
+                                    if (chil > 0) {
+                                        if (Number.isInteger(Math.sqrt(+chil))) {
+                                            document.getElementById('c').innerHTML = '<span>Ответ:</span>' + '&plusmn;' + Math.sqrt(+chil);
+                                        } else {
+                                            document.getElementById('c').innerHTML = '<span>Ответ:</span>' + '&plusmn;' + Math.sqrt(+chil).toFixed(round);
+                                        }
+                                        answer[0].style.display = "block";
+                                    } else if (chil < 0) {
+                                        chil = math.complex(chil);
+                                        document.getElementById('c').innerHTML = '<span>Ответ:</span>' + '&plusmn;' + (Number.isInteger(math.sqrt(chil).im) ? (math.sqrt(chil).im == 1 ? 'i' : math.sqrt(chil).im + 'i') : math.sqrt(chil).im.toFixed(round) + 'i');
+                                        answer[0].style.display = "block";
+                                    } else if (+chil === 0) {
+                                        document.getElementById('c').innerHTML = '<span>Ответ:</span>' + Math.sqrt(+chil);
+                                        answer[0].style.display = "block";
+                                    } else {
+                                        document.getElementById('d').innerHTML = '<span>Ошибка!</span>Введено некорректное число!';
+                                        error[0].style.display = "block";
+                                    }
+                                } else {
+                                    document.getElementById('d').innerHTML = '<span>Ошибка!</span>Введено некорректное число!';
+                                    error[0].style.display = "block";
+                                    return;
+                                }
+                            } else {
+                                chil = eval(chil);
+                                if (+chil > 0) {
+                                    if (Number.isInteger(Math.sqrt(+chil))) {
+                                        document.getElementById('c').innerHTML = '<span>Ответ:</span>' + '&plusmn;' + Math.sqrt(+chil);
+                                    } else {
+                                        document.getElementById('c').innerHTML = '<span>Ответ:</span>' + '&plusmn;' + Math.sqrt(+chil).toFixed(round);
+                                    }
+                                    answer[0].style.display = "block";
+                                } else if (+chil < 0) {
+                                    chil = math.complex(chil);
+                                    document.getElementById('c').innerHTML = '<span>Ответ:</span>' + '&plusmn;' + Number.isInteger(math.sqrt(chil).im) ? math.sqrt(chil).im + 'i' : math.sqrt(chil).im.toFixed(round) + 'i';
+                                    answer[0].style.display = "block";
+                                } else if (+chil === 0) {
+                                    document.getElementById('c').innerHTML = '<span>Ответ:</span>' + Math.sqrt(+chil);
+                                    answer[0].style.display = "block";
+                                } else {
+                                    document.getElementById('d').innerHTML = '<span>Ошибка!</span>Введено некорректное число!';
+                                    error[0].style.display = "block";
+                                }
+                            }
+                        } catch {
+
+                            try {
+                                chil = math.complex(chil);
+                                if (typeof(chil) == 'object') {
+                                    document.getElementById('c').innerHTML = '<span>Ответ:</span>' + '&plusmn;' + '(' + ((math.sqrt(chil).re == 0) ? (math.sqrt(chil).im == 0 ? '' : (Math.abs(math.sqrt(chil).im) != 1 ? (math.sqrt(chil).im < 0 ? '- ' : '') + Math.abs(math.sqrt(chil).im.toFixed(round)) + 'i' : ((math.sqrt(chil).im < 0 ? ' - ' : ' + ') + ' i'))) : ((Number.isInteger(math.sqrt(chil).re) ? math.sqrt(chil).re : math.sqrt(chil).re.toFixed(round)) + (math.sqrt(chil).im == 0 ? '' : (Math.abs(math.sqrt(chil).im) != 1 ? (math.sqrt(chil).im < 0 ? ' - ' : ' + ') + Math.abs(math.sqrt(chil).im.toFixed(round)) + 'i' : ((math.sqrt(chil).im < 0 ? ' - ' : ' + ') + 'i'))))) + ')';
+                                    answer[0].style.display = "block";
+                                }
+                            } catch {
+                                document.getElementById('d').innerHTML = '<span>Ошибка!</span>Введено некорректное число!';
+                                error[0].style.display = "block";
+                            }
+                        }
+                    }
+                }
+
+
+            }
+        }
+        document.getElementById("button").onclick = someFunc;
+
+    </script>
+</body>
+
+</html>

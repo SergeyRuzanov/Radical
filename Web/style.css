@@ -1,0 +1,159 @@
+@font-face {
+    font-family: "Roboto";
+    src: url(font/Roboto-Regular.ttf) format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url(font/Roboto-Bold.ttf) format("truetype");
+    font-weight: 700;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+}
+
+.main {
+    width: 80%;
+    max-width: 450px;
+    padding: 20px;
+    border: 2px solid #9b9494;
+    border-radius: 10px;
+    margin: 30px auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #d46969;
+}
+
+input {
+    display: block;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+}
+
+p {
+    margin-top: 10px;
+}
+
+#b {
+    text-transform: none;
+    text-decoration: none;
+}
+
+#a,
+#b {
+    width: 250px;
+    height: 25px;
+    line-height: 25px;
+    margin: 10px auto;
+    padding: 0 9px 0 9px;
+    border: 2px solid #9b9494;
+    border-radius: 15px;
+    font-size: 0.9em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+#a:focus,
+#b:focus {
+    border-color: #f09797;
+}
+
+#button {
+    background-color: #9b9494;
+    border: none;
+    padding: 10px 15px;
+    margin: 15px auto 0 auto;
+    border-radius: 10px;
+    color: #ededed;
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+}
+
+#button:hover {
+    background-color: #f09797;
+    cursor: pointer;
+}
+
+#button:active {
+    background-color: #d46969;
+}
+
+
+.answer,
+.error {
+    display: none;
+    /*    overflow-x: auto;*/
+    width: 90%;
+    margin: 10px auto;
+}
+
+.answer {
+    background-color: #96e5a3;
+    border: 2px solid #22a828;
+    border-radius: 10px;
+    color: #0e6012;
+    font-weight: 700;
+    padding: 20px;
+}
+
+.error {
+    background-color: #e58282;
+    border: 2px solid #883434;
+    border-radius: 10px;
+    color: #7e1212;
+    font-weight: 700;
+    padding: 20px;
+}
+
+.error span {
+    text-align: left;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.answer span {
+    text-align: left;
+    display: block;
+    margin-bottom: 10px;
+}
+
+#ytWidget {
+    margin: 15px 0 0 0;
+    text-align: right;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+    font-size: 0.9em;
+}
+
+a:hover {
+    color: #d46969;
+}
+
+.copy {
+    text-align: right;
+    color: #969696;
+    font-size: 0.7em;
+}
