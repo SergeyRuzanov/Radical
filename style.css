@@ -168,3 +168,8 @@ a:hover {
     top: 0.3vh;
     left: 2.5vw;
 }
+
+.lang a {
+    display: block;
+    margin-bottom: 4px;
+}
